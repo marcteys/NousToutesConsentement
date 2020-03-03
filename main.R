@@ -1,8 +1,9 @@
-data = read.csv("data.csv")  # read csv file 
+data = read.csv("datasimple.csv")  # Lire le fichier csv 
 data 
 
-names(data)[1] <- "Gender"
-names(data)[2] <- "Age"
+
+dataHommes <- subset(data, Genre=="Un homme") 
+dataFemmes <- subset(data, Genre=="Une femme") 
 
 
-dataHommes <- subset(data, Gender=="Un homme") 
+
