@@ -7,6 +7,9 @@ Les noms des colonnes sont nettoyés et adaptés pour être traités par RStudio
 
 Rapport complet: https://drive.google.com/file/d/1ho4EFPtsPAUpfYNOydbpn6C0HF82JaHA/view
 
+## Exemple
+Ce script vous permettra de faire des graphiques comme celui-ci:
+![Resullts](https://raw.githubusercontent.com/marcteys/NousToutesConsentement/master/results/pasenvie.PNG)
 
 ## Les données 
 Les 108 947 réponses à l’enquête sont disponibles en téléchargement jusqu’au 9 mars : http://bit.ly/donneesenquete
