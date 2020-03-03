@@ -37,12 +37,6 @@ header
 
 
 
-
-
-
-
-
-
 ## FONCTIONS A CHARGER
 
 wrap_strings <- function(vector_of_strings,width){sapply(vector_of_strings,FUN=function(x){paste(strwrap(x,width=width), collapse="\n")})} 
@@ -97,11 +91,11 @@ AfficherGraphGenre <- function(data,columnName = "", type = "percent", reverse =
   plottitle
   
   
-  plot <- ggplot(data = tmpPercent, aes(x = 2, y = Freq, fill = tmpPercent[,c(columnName)] )) + 
+  plot <- ggplot(data = tmpPercent, aes(x = 2, y = Freq,   colours = wrap_strings(columnName, 6) , fill = tmpPercent[,c(columnName)] )) + 
     geom_bar(width = 1, stat = "identity", color ="white", position = position_fill()) +
-    geom_text(aes(label = round(Freq)), position = position_fill(vjust = 0.5), color ="black",size=4) +
+    geom_text(aes(label = wrap_strings(round(Freq), 50)), position = position_fill(vjust = 0.5), color ="black",size=4) +
     coord_polar(theta = "y") +
-    facet_wrap(~Genre,strip.position="bottom")  +
+    facet_wrap(~Genre, strip.position="bottom")  +
     scale_fill_manual(values = mycols) +
     theme_void() +  
     theme(axis.title.x = element_blank(),
@@ -113,18 +107,24 @@ AfficherGraphGenre <- function(data,columnName = "", type = "percent", reverse =
     theme(legend.key.height=unit(1, "cm")) +
     theme(legend.key.size = unit(0.5, "cm")) +
     theme(plot.margin=unit(c(1,1,1.5,1.2),"cm")) +
-    theme(strip.text = element_text(size=15) ) +  
-    theme( legend.margin = margin(5, 50, 5, 50) ) +
+    theme(strip.text = element_text(size=10) ) +  
+    theme( legend.margin = margin(5, 20, 5, 20) ) +
     #theme(plot.title = element_text(size=30/nchar(plottitle), vjust=-200))+
-    theme(plot.title = element_text(size=13, hjust = 0.5))
+    theme(plot.title = element_text(size=13, vjust = 13, hjust = 0.5))
   
   
   return(plot)
 }
 
+
+
+
+## RESULTS
+AfficherGraphGenre(dataFemmesHommes, "RapportNonProtege", reverse = TRUE)
+
+
 p1 = AfficherGraphGenre(dataFemmesHommes, "SexeHorsPenetrationSommeil", reverse = TRUE)
 p2 = AfficherGraphGenre(dataFemmesHommes, "SexeHorsPenetrationSommeilPartenaire", reverse = FALSE, removeEmpty = TRUE)
+p3 = AfficherGraphGenre(dataFemmesHommes, "SexeHorsPenetrationSommeilFrequence", reverse = TRUE, removeEmpty = TRUE)
 
-ggarrange(p1, p2, ncol = 1) %>%
-ggexport(filename = "test.png") 
-
+ggarrange(p1, p2,p3, ncol = 1) 
