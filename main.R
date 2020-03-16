@@ -120,8 +120,12 @@ AfficherGraphGenre <- function(data,columnName = "", type = "percent", reverse =
 
 
 ## RESULTS
+AfficherGraphGenre(dataFemmesHommes, "ConsentementPremierRapport", reverse = TRUE)
 
-AfficherGraphGenre(dataFemmesHommes, "SexeHorsPenetrationEveille", reverse = TRUE)
+
+d1 = AfficherGraphGenre(dataFemmesHommes, "ConsentementPremierRapport", reverse = TRUE)
+d2 = AfficherGraphGenre(dataFemmesHommes, "SexeArretNondemande", reverse = TRUE)
+ggarrange(d1, d2, ncol = 1) 
 
 
 
@@ -130,9 +134,9 @@ c1 = AfficherGraphGenre(dataFemmesHommes, "ConsentementParlé", reverse = TRUE, r
 ggarrange(c1, c2, ncol = 1) 
 
   
-p1 = AfficherGraphGenre(dataFemmesHommes, "SexeHorsPenetrationSommeil", reverse = TRUE)
-p2 = AfficherGraphGenre(dataFemmesHommes, "SexeHorsPenetrationSommeilPartenaire", reverse = FALSE, removeEmpty = TRUE)
-p3 = AfficherGraphGenre(dataFemmesHommes, "SexeHorsPenetrationSommeilFrequence", reverse = TRUE, removeEmpty = TRUE)
+p1 = AfficherGraphGenre(dataFemmesHommes, "SexePressionRythme", reverse = TRUE)
+p2 = AfficherGraphGenre(dataFemmesHommes, "SexePressionRythmePartenaire", reverse = FALSE, removeEmpty = TRUE)
+p3 = AfficherGraphGenre(dataFemmesHommes, "SexePressionRythmeFrequence", reverse = TRUE, removeEmpty = TRUE)
 
 ggarrange(p1, p2,p3, ncol = 1) 
 
